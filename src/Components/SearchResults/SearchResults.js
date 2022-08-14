@@ -1,11 +1,17 @@
 import React from 'react';
+import TrackList from '../TrackList/TrackList';
 import './SearchResults.css';
+import { useEffect } from 'react';
 
-const SearchResults = () => {
+const SearchResults = ({searchResults}) => {
+  useEffect(() => {
+    console.log(searchResults)
+  }, []);
   return (
     <div className='SearchResults'>
       <h2>Results</h2>
-      {/* <!-- Add a TrackList component --> */}
+      <p>{searchResults[1].album}</p>
+      <TrackList tracks={searchResults} />
     </div>
   );
 };
