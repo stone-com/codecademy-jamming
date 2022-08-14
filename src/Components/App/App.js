@@ -1,5 +1,7 @@
 import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
 import './App.css';
+import Playlist from '../Playlist/Playlist';
 
 const App = () => {
   return (
@@ -10,8 +12,8 @@ const App = () => {
       <div class='App'>
         <SearchBar />
         <div class='App-playlist'>
-          {/* <!-- Add a SearchResults component -->
-      <!-- Add a Playlist component --> */}
+          <SearchResults />
+          <Playlist />
         </div>
       </div>
     </div>
