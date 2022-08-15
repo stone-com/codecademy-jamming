@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import './Track.css';
 
-const Track = ({ track, onAdd, isRemoval }) => {
+const Track = ({ track, onAdd, isRemoval, onRemove }) => {
   // method to render plus or minus button depending on isRemoval state.
   const renderAction = () => {
     return isRemoval ? (
-      <button class='Track-action'>-</button>
+      <button
+        class='Track-action'
+        onClick={() => {
+          onRemove(track);
+        }}
+      >
+        -
+      </button>
     ) : (
-      <button class='Track-action' onClick={() => {onAdd(track)}}>
+      <button
+        class='Track-action'
+        onClick={() => {
+          onAdd(track);
+        }}
+      >
         +
       </button>
     );
