@@ -17,25 +17,23 @@ const App = () => {
     { name: 'name4', artist: 'artist4', album: 'album4', id: 'id4' },
   ]);
   // method to add track to playlist
-  const addTrack = (track) => {
-    // check to make sure track id is not already in tracklist, return if it is.
-    if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
-      console.log(`${track.name} is already in your playlist`);
-      return;
-    } else {
-      // add track to playlist
-      setPlaylistTracks([...playlistTracks, track]);
-    }
-  };
-
-  // method to remove track from playlist
-  const removeTrack = (track) => {
-    // filter the playlist and remove the matching ID
-    const filteredList = playlistTracks.filter((selectedTrack) => {
-      return selectedTrack.id !== track.id;
+  function addTrack(track) {
+    setPlaylistTracks(oldPlaylistTracks => {
+      if (oldPlaylistTracks.includes(track)) {
+        console.log(`${track.name} is already in the playlist`);
+        return oldPlaylistTracks;
+      }
+      else {
+        console.log(track);
+        return [...oldPlaylistTracks, track];
+       
+      }
     });
-    setPlaylistTracks(filteredList);
-  };
+  }
+// remove track from playlist
+  function removeTrack(track) {
+    setPlaylistTracks(oldPlaylistTracks => oldPlaylistTracks.filter((t => track !== t)));
+  }
   return (
     <div>
       <h1>

@@ -4,9 +4,7 @@ import './SearchResults.css';
 import { useEffect } from 'react';
 
 const SearchResults = ({ searchResults, onAdd }) => {
-  useEffect(() => {
-    console.log(searchResults);
-  }, []);
+
   return (
     <div className='SearchResults'>
       <h2>Results</h2>
