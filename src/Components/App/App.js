@@ -16,9 +16,26 @@ const App = () => {
     { name: 'name3', artist: 'artist3', album: 'album3', id: 'id3' },
     { name: 'name4', artist: 'artist4', album: 'album4', id: 'id4' },
   ]);
-  useEffect(() => {
-    console.log(searchResults);
-  }, []);
+  // method to add track to playlist
+  const addTrack = (track) => {
+    // check to make sure track id is not already in tracklist, return if it is.
+    if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
+      console.log(`${track.name} is already in your playlist`);
+      return;
+    } else {
+      // add track to playlist
+      setPlaylistTracks([...playlistTracks, track]);
+    }
+  };
+
+  // method to remove track from playlist
+  const removeTrack = (track) => {
+    // filter the playlist and remove the matching ID
+    const filteredList = playlistTracks.filter((selectedTrack) => {
+      return selectedTrack.id !== track.id;
+    });
+    setPlaylistTracks(filteredList);
+  };
   return (
     <div>
       <h1>
@@ -27,8 +44,13 @@ const App = () => {
       <div className='App'>
         <SearchBar />
         <div className='App-playlist'>
-          <SearchResults searchResults={searchResults} />
-          <Playlist />
+          {/* render searchresults and playlist components, passing in state data as props */}
+          <SearchResults searchResults={searchResults} onAdd={addTrack} />
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            onRemove={removeTrack}
+          />
         </div>
       </div>
     </div>

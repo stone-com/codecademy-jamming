@@ -3,15 +3,15 @@ import TrackList from '../TrackList/TrackList';
 import './SearchResults.css';
 import { useEffect } from 'react';
 
-const SearchResults = ({searchResults}) => {
+const SearchResults = ({ searchResults, onAdd }) => {
   useEffect(() => {
-    console.log(searchResults)
+    console.log(searchResults);
   }, []);
   return (
     <div className='SearchResults'>
       <h2>Results</h2>
-      <p>{searchResults[1].album}</p>
-      <TrackList tracks={searchResults} />
+      {/* render tracklist, passing down search results and onAdd function from props */}
+      <TrackList tracks={searchResults} onAdd={onAdd} isRemoval={false} />
     </div>
   );
 };
