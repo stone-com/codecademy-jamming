@@ -18,21 +18,26 @@ const App = () => {
   ]);
   // method to add track to playlist
   function addTrack(track) {
-    setPlaylistTracks(oldPlaylistTracks => {
+    setPlaylistTracks((oldPlaylistTracks) => {
       if (oldPlaylistTracks.includes(track)) {
         console.log(`${track.name} is already in the playlist`);
         return oldPlaylistTracks;
-      }
-      else {
+      } else {
         console.log(track);
         return [...oldPlaylistTracks, track];
-       
       }
     });
   }
-// remove track from playlist
+  // remove track from playlist
   function removeTrack(track) {
-    setPlaylistTracks(oldPlaylistTracks => oldPlaylistTracks.filter((t => track !== t)));
+    setPlaylistTracks((oldPlaylistTracks) =>
+      oldPlaylistTracks.filter((t) => track !== t)
+    );
+  }
+
+  // update playlist name
+  function updatePlaylistName(name) {
+    setPlaylistName(name);
   }
   return (
     <div>
@@ -48,6 +53,7 @@ const App = () => {
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onRemove={removeTrack}
+            onNameChange={updatePlaylistName}
           />
         </div>
       </div>

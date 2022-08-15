@@ -25,11 +25,6 @@ const Track = ({ track, onAdd, isRemoval, onRemove }) => {
     );
   };
 
-  // method to add track to playlist, uses onAdd function and passes in track prop
-  // const addTrack = (track) => {
-  //   console.log(track);
-  //   console.log(onAdd);
-  // };
   return (
     <div class='Track'>
       <div class='Track-information'>
