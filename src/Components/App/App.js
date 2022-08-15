@@ -39,13 +39,25 @@ const App = () => {
   function updatePlaylistName(name) {
     setPlaylistName(name);
   }
+
+  function savePlaylist() {
+    const trackURIs = playlistTracks.map((track) => track.uri);
+    console.log('FUNCTION CALLLED');
+    return trackURIs;
+  }
+
+  // search for a track
+  function search(term) {
+    console.log(term);
+  }
+
   return (
     <div>
       <h1>
         Ja<span className='highlight'>mmm</span>ing
       </h1>
       <div className='App'>
-        <SearchBar />
+        <SearchBar onSearch={search} />
         <div className='App-playlist'>
           {/* render searchresults and playlist components, passing in state data as props */}
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
@@ -54,6 +66,7 @@ const App = () => {
             playlistTracks={playlistTracks}
             onRemove={removeTrack}
             onNameChange={updatePlaylistName}
+            onSave={savePlaylist}
           />
         </div>
       </div>

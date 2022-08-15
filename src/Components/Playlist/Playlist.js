@@ -2,7 +2,7 @@ import React from 'react';
 import TrackList from '../TrackList/TrackList';
 import './Playlist.css';
 
-const Playlist = ({ playlistName, playlistTracks, onRemove, onNameChange }) => {
+const Playlist = ({ playlistTracks, onRemove, onNameChange, onSave }) => {
   function handleNameChange(e) {
     onNameChange(e.target.value);
   }
@@ -12,7 +12,9 @@ const Playlist = ({ playlistName, playlistTracks, onRemove, onNameChange }) => {
       <input defaultValue={'New Playlist'} onChange={handleNameChange} />
       {/* render tracklist, passing in playlistTracks as props to be rendered */}
       <TrackList tracks={playlistTracks} isRemoval={true} onRemove={onRemove} />
-      <button className='Playlist-save'>SAVE TO SPOTIFY</button>
+      <button className='Playlist-save' onClick={onSave}>
+        SAVE TO SPOTIFY
+      </button>
     </div>
   );
 };
