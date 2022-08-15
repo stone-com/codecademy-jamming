@@ -3,6 +3,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import './App.css';
 import Playlist from '../Playlist/Playlist';
 import { useState, useEffect } from 'react';
+import Spotify from '../../util/Spotify';
 
 const App = () => {
   // setting states for searchresults, playlistname, and playlist tracks.
@@ -48,7 +49,8 @@ const App = () => {
 
   // search for a track
   function search(term) {
-    console.log(term);
+    let results = Spotify.search(term);
+    setSearchResults(results);
   }
 
   return (
