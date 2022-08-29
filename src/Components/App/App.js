@@ -30,11 +30,12 @@ const App = () => {
     });
   }
   // remove track from playlist
-  // function removeTrack(track) {
-  //   setPlaylistTracks((oldPlaylistTracks) =>
-  //     oldPlaylistTracks.filter((t) => track !== t)
-  //   );
-  // }
+  function removeTrack(track) {
+    let newPlaylistTracks = playlistTracks.filter(
+      (playlistTrack) => playlistTrack.id !== track.id
+    );
+    setPlaylistTracks(newPlaylistTracks);
+  }
 
   // update playlist name
   function updatePlaylistName(name) {
