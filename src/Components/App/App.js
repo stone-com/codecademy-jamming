@@ -30,11 +30,11 @@ const App = () => {
     });
   }
   // remove track from playlist
-  function removeTrack(track) {
-    setPlaylistTracks((oldPlaylistTracks) =>
-      oldPlaylistTracks.filter((t) => track !== t)
-    );
-  }
+  // function removeTrack(track) {
+  //   setPlaylistTracks((oldPlaylistTracks) =>
+  //     oldPlaylistTracks.filter((t) => track !== t)q
+  //   );
+  // }
 
   // update playlist name
   function updatePlaylistName(name) {
@@ -66,7 +66,7 @@ const App = () => {
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
-            onRemove={removeTrack}
+            // onRemove={removeTrack}
             onNameChange={updatePlaylistName}
             onSave={savePlaylist}
           />

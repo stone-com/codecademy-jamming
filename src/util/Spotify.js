@@ -54,6 +54,20 @@ const Spotify = {
       console.error(err);
     }
   },
+  savePlaylist: async (playlistName, tracksUri) => {
+    if (!playlistName && !tracksUri) return;
+
+    // get spotify user ID using access token in header
+    let results = await fetch('https://api.spotify.com/v1/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    let jsonResults = results.json();
+    let jsonUserId = jsonResults.id;
+
+    // Use the returned user ID to make a POST request that creates a new playlist in the user’s account and returns a playlist ID.
+  },
 };
 
 export default Spotify;
