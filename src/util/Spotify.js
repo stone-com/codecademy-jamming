@@ -58,15 +58,56 @@ const Spotify = {
     if (!playlistName && !tracksUri) return;
 
     // get spotify user ID using access token in header
-    let results = await fetch('https://api.spotify.com/v1/me', {
+    let userId = await fetch('https://api.spotify.com/v1/me', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-    });
-    let jsonResults = results.json();
-    let jsonUserId = jsonResults.id;
+    })
+      .then((response) => response.json())
+      .then((jsonResponse) => jsonResponse.id)
+      .catch((err) => {
+        console.log(`User id Fetch error: ${err}`);
+      });
 
     // Use the returned user ID to make a POST request that creates a new playlist in the user’s account and returns a playlist ID.
+    let playlistId = await fetch(
+      `https://api.spotify.com/v1/users/${userId}/playlists`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: playlistName,
+        }),
+        json: true,
+      }
+    )
+      .then((response) => response.json())
+      .then((jsonResponse) => jsonResponse.id)
+      .catch((err) => {
+        console.log(`Create Playlist error: ${err}`);
+      });
+
+    // Use playlist ID to make a post request to add array of tracks URI's to the playlist
+    await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      // pass array of track URI's as the request body
+      body: JSON.stringify({
+        uris: tracksUri,
+      }),
+    })
+      .then((response) => {
+        console.log('Songs added to playlist');
+      })
+      .catch((error) => {
+        console.log('Fetch error while adding songs to the playlist');
+      });
   },
 };
 

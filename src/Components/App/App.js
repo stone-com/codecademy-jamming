@@ -32,7 +32,7 @@ const App = () => {
   // remove track from playlist
   // function removeTrack(track) {
   //   setPlaylistTracks((oldPlaylistTracks) =>
-  //     oldPlaylistTracks.filter((t) => track !== t)q
+  //     oldPlaylistTracks.filter((t) => track !== t)
   //   );
   // }
 
@@ -43,8 +43,7 @@ const App = () => {
 
   function savePlaylist() {
     const trackURIs = playlistTracks.map((track) => track.uri);
-    console.log('FUNCTION CALLLED');
-    return trackURIs;
+    Spotify.savePlaylist(playlistName, trackURIs);
   }
 
   // search for a track
